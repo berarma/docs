@@ -201,8 +201,10 @@ platform specific SQL for creating or dropping a specific table::
     }
 
     // Drop a table
-    $sql = $schema->dropSql($db);
-    $db->execute($sql);
+    $queries = $schema->dropSql($db);
+    foreach ($queries as $sql) {
+      $db->execute($sql);
+    }
 
 By using a connection's driver the schema data can be converted into platform
 specific SQL. The return of ``createSql`` and ``dropSql`` is a list of SQL
